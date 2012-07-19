@@ -3,7 +3,7 @@
 Plugin Name: Auto SEO
 Plugin URI: http://www.pgiauto.com/
 Description: Speeds on site SEO time with a single, simple interface to control all the posts/pages.
-Version: 1.3.2
+Version: 1.3.3
 Author: Phillip Gooch
 Author URI: mailto:phillip@pgiauto.com
 License: GNU General Public License v2
@@ -13,7 +13,7 @@ License: GNU General Public License v2
 add_action('admin_menu','auto_seo_menu');
 add_action('admin_bar_menu', 'auto_seo_admin_bar_menu',151);
 function auto_seo_menu(){
-	add_menu_page('Auto SEO','Auto SEO',1,'auto_seo','auto_seo','../wp-content/plugins/auto_seo/seo_icon.png',152);
+	add_menu_page('Auto SEO','Auto SEO',1,'auto_seo','auto_seo','../wp-content/plugins/auto-seo/seo_icon.png',152);
 }
 function auto_seo_admin_bar_menu($admin_bar){
 	$admin_bar->add_menu( array(
@@ -39,56 +39,60 @@ Add_filter('loop_start','auto_seo_obflush');
 
 #### Add in the new meta data
 function auto_seo_addin(){
-    global $wp_query;
-   // print_r($wp_query->queried_object);
-    $id = trim($wp_query->queried_object->ID);
-	$settings = get_option('auto_seo_settings');
-	$settings = unserialize($settings);
-	#### Determine Title (and city, which is used everywhere)
-	$first_title_slugs = explode("\n", $settings['first_title_slug']);
-	$first_title_slug_count = count($first_title_slugs)-1;
-	$second_title_slugs = explode("\n", $settings['second_title_slug']);
-	$second_title_slug_count = count($second_title_slugs)-1;
-	$cities = explode("\n", $settings['cities']);
-	$city_count = count($cities)-1;
-	$selected_first_title_slug = $id;
-	$selected_second_title_slug = $id;
-	$selected_city = $id;
-	while($selected_first_title_slug>$first_title_slug_count){$selected_first_title_slug=$selected_first_title_slug-$first_title_slug_count;}
-	while($selected_second_title_slug>$second_title_slug_count){$selected_second_title_slug=$selected_second_title_slug-$second_title_slug_count;}
-	while($selected_city>$city_count){$selected_city=$selected_city-$city_count;}
-	if($id == get_option('page_on_front')){
-		$selected_city = 0;
-		$selected_first_title_slug = 0;
-		$selected_second_title_slug = 0;
-	}
-		$title = $first_title_slugs[$selected_first_title_slug].' '.($settings['title_seperator']==''?'':$settings['title_seperator'].' ').$second_title_slugs[$selected_second_title_slug].' '.($settings['title_seperator']==''?'':$settings['title_seperator'].' ').$cities[$selected_city];
-	#### Determine Description
-	$description = stripslashes(str_ireplace('[city]',$cities[$selected_city],$settings['description']));
-	#### Determine Keywords
-	$keywords = explode(',',$settings['keywords']);
-	$keyword_count = count($keywords);
-	$keywords_selected = 0;
-	$keyword_selection_point = $id*3;
-	$keyword_string = '';
-	while($keywords_selected < 10){
-		$keyword_selection_point++;
-		if(isset($keywords[$keyword_selection_point])){
-			$keyword_selection_point = $keyword_selection_point-$keyword_count;
+ 	$settings = get_option('auto_seo_settings','');
+	if($settings!=''){
+		$settings = unserialize($settings);
+	   	global $wp_query;
+	   // print_r($wp_query->queried_object);
+	    $id = trim($wp_query->queried_object->ID);
+		$settings = get_option('auto_seo_settings');
+		$settings = unserialize($settings);
+		#### Determine Title (and city, which is used everywhere)
+		$first_title_slugs = explode("\n", $settings['first_title_slug']);
+		$first_title_slug_count = count($first_title_slugs)-1;
+		$second_title_slugs = explode("\n", $settings['second_title_slug']);
+		$second_title_slug_count = count($second_title_slugs)-1;
+		$cities = explode("\n", $settings['cities']);
+		$city_count = count($cities)-1;
+		$selected_first_title_slug = $id;
+		$selected_second_title_slug = $id;
+		$selected_city = $id;
+		while($selected_first_title_slug>$first_title_slug_count){$selected_first_title_slug=$selected_first_title_slug-$first_title_slug_count;}
+		while($selected_second_title_slug>$second_title_slug_count){$selected_second_title_slug=$selected_second_title_slug-$second_title_slug_count;}
+		while($selected_city>$city_count){$selected_city=$selected_city-$city_count;}
+		if($id == get_option('page_on_front')){
+			$selected_city = 0;
+			$selected_first_title_slug = 0;
+			$selected_second_title_slug = 0;
 		}
-		if(isset($keywords[$keyword_selection_point])){
-			$keyword_string .= trim($keywords[$keyword_selection_point]).', ';
+			$title = $first_title_slugs[$selected_first_title_slug].' '.($settings['title_seperator']==''?'':$settings['title_seperator'].' ').$second_title_slugs[$selected_second_title_slug].' '.($settings['title_seperator']==''?'':$settings['title_seperator'].' ').$cities[$selected_city];
+		#### Determine Description
+		$description = stripslashes(str_ireplace('[city]',$cities[$selected_city],$settings['description']));
+		#### Determine Keywords
+		$keywords = explode(',',$settings['keywords']);
+		$keyword_count = count($keywords);
+		$keywords_selected = 0;
+		$keyword_selection_point = $id*3;
+		$keyword_string = '';
+		while($keywords_selected < 10){
+			$keyword_selection_point++;
+			if(isset($keywords[$keyword_selection_point])){
+				$keyword_selection_point = $keyword_selection_point-$keyword_count;
+			}
+			if(isset($keywords[$keyword_selection_point])){
+				$keyword_string .= trim($keywords[$keyword_selection_point]).', ';
+			}
+			$keywords_selected++;
 		}
-		$keywords_selected++;
+		$keywords = $keyword_string.$cities[$selected_city];
+		#### output the new meta infos
+		echo '<!-- Auto SEO --><title>'.$title.'</title>';
+		echo "\n";
+		echo '<!-- Auto SEO --><meta name="description" content="'.$description.'">';
+		echo "\n";
+		echo '<!-- Auto SEO --><meta name="keywords" content="'.$keywords.'">';
+		echo "\n";
 	}
-	$keywords = $keyword_string.$cities[$selected_city];
-	#### output the new meta infos
-	echo '<!-- Auto SEO --><title>'.$title.'</title>';
-	echo "\n";
-	echo '<!-- Auto SEO --><meta name="description" content="'.$description.'">';
-	echo "\n";
-	echo '<!-- Auto SEO --><meta name="keywords" content="'.$keywords.'">';
-	echo "\n";
 }
 Add_filter('wp_head','auto_seo_addin');
 

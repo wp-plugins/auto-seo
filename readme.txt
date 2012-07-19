@@ -3,7 +3,7 @@ Contributors: Phillip.Gooch
 Tags: pages, seo, meta-tags, admin
 Requires at least: 3.2
 Tested up to: 3.4
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,3 +58,6 @@ Yes, the homepage (as defined in the Settings > Reading section) will _always_ u
 #### 1.3.2
  + Changed Licensing for Worpdres Extend Submission.
  + Removed changelog from main file and placed it into readme.
+#### 1.3.3
+ + Fixed the broken menu icon (thanks wordpress extend rename).
+ + Fixed a bug that would cause pages to not load if the AutoSEO settings were missing or blank.
