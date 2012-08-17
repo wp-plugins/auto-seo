@@ -3,7 +3,7 @@
 Plugin Name: Auto SEO
 Plugin URI: http://www.pgiauto.com/
 Description: Speeds on site SEO time with a single, simple interface to control all the posts/pages.
-Version: 1.3.3
+Version: 1.3.4
 Author: Phillip Gooch
 Author URI: mailto:phillip@pgiauto.com
 License: GNU General Public License v2
@@ -43,8 +43,12 @@ function auto_seo_addin(){
 	if($settings!=''){
 		$settings = unserialize($settings);
 	   	global $wp_query;
-	   // print_r($wp_query->queried_object);
-	    $id = trim($wp_query->queried_object->ID);
+	   	if(isset($wp_query->queried_object->ID)){
+	   		$id = trim($wp_query->queried_object->ID);
+	   	}else{
+	   		// Only happens if on homepage and homepage is blog
+	   		$id = 0;
+	   	}
 		$settings = get_option('auto_seo_settings');
 		$settings = unserialize($settings);
 		#### Determine Title (and city, which is used everywhere)
