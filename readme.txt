@@ -3,7 +3,7 @@ Contributors: Phillip.Gooch
 Tags: pages, seo, meta-tags, admin
 Requires at least: 3.2
 Tested up to: 3.4
-Stable tag: 1.3.3
+Stable tag: 1.3.5
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,7 +23,7 @@ Why AutoSEO
  + Works with nearly all themes, even older themes and themes missing headers.
  + Did I mention how much quicker it is? Super-quick!
 
-_Note: AutoSEO works by replacing content in the html head section and is, in all practicality, not compatible with other SEO plugins._
+_Note: AutoSEO works by replacing content in the html head section and is, in all practicality, not compatible with other SEO header tag plugins._
 
 == Installation ==
 
@@ -45,19 +45,26 @@ Yes, the homepage (as defined in the Settings > Reading section) will _always_ u
 
 == Changelog ==
 
-#### 1.0.0
- + Initial Release
+#### 1.3.5
+ + Added an appropriate robots meta tag into plugin (currently same as default wordpress).
+ + Fixed a bug in which it would only pull 2 keywords.
+ + Fixed a bug in which it wouldent remove old meta tags before adding new ones.
+#### 1.3.4
+ + Fixed a bug that would cause the plugin to fail when your sites home page was it's blog.
+ + Reversed the order of the change log to newest version is always at the  top.
+#### 1.3.3
+ + Fixed the broken menu icon (thanks wordpress extend rename).
+ + Fixed a bug that would cause pages to not load if the AutoSEO settings were missing or blank.
+#### 1.3.2
+ + Changed Licensing for Worpdres Extend Submission.
+ + Removed changelog from main file and placed it into readme.
+#### 1.2.2
+ + Fixed a bug where a line of code would occasionally show at top of page.
+#### 1.2.1
+ + Homepage now always uses first item from each list.
 #### 1.1.1
  + Gave the back end a custom icon.
  + Changed when the output buffer was cahced for better compatibility to old/bad themes (I'm looking at you fast and quick).
  + Fixed a rare bug where the title would not display - _Allegedly_
-#### 1.2.1
- + Homepage now always uses first item from each list.
-#### 1.2.2
- + Fixed a bug where a line of code would occasionally show at top of page.
-#### 1.3.2
- + Changed Licensing for Worpdres Extend Submission.
- + Removed changelog from main file and placed it into readme.
-#### 1.3.3
- + Fixed the broken menu icon (thanks wordpress extend rename).
- + Fixed a bug that would cause pages to not load if the AutoSEO settings were missing or blank.
+#### 1.0.0
+ + Initial Release

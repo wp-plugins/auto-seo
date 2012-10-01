@@ -3,7 +3,7 @@
 Plugin Name: Auto SEO
 Plugin URI: http://www.pgiauto.com/
 Description: Speeds on site SEO time with a single, simple interface to control all the posts/pages.
-Version: 1.3.3
+Version: 1.3.4
 Author: Phillip Gooch
 Author URI: mailto:phillip@pgiauto.com
 License: GNU General Public License v2
@@ -33,7 +33,11 @@ Add_filter('get_header','auto_seo_obstrart');
 #Add_filter('get_header','auto_seo_obstrart');
 function auto_seo_obflush($title,$sep=''){
 	$head = ob_get_clean();
-	echo preg_replace('~(?<!(<!-- Auto SEO -->))<title.*>.+</title>~i','',$head);
+	$head = preg_replace('~(?<!(<!-- Auto SEO -->))<title.*>.+</title>~i','',$head);
+	$head = preg_replace('~(?<!(<!-- Auto SEO -->))<meta name="description".* />~i','',$head);
+	$head = preg_replace('~(?<!(<!-- Auto SEO -->))<meta name="keywords".*/>~i','',$head);
+	$head = preg_replace('~(?<!(<!-- Auto SEO -->))<meta name="robots".*/>~i','',$head);
+	echo $head;
 }
 Add_filter('loop_start','auto_seo_obflush');
 
@@ -43,8 +47,12 @@ function auto_seo_addin(){
 	if($settings!=''){
 		$settings = unserialize($settings);
 	   	global $wp_query;
-	   // print_r($wp_query->queried_object);
-	    $id = trim($wp_query->queried_object->ID);
+	   	if(isset($wp_query->queried_object->ID)){
+	   		$id = trim($wp_query->queried_object->ID);
+	   	}else{
+	   		// Only happens if on homepage and homepage is blog
+	   		$id = 0;
+	   	}
 		$settings = get_option('auto_seo_settings');
 		$settings = unserialize($settings);
 		#### Determine Title (and city, which is used everywhere)
@@ -74,9 +82,9 @@ function auto_seo_addin(){
 		$keywords_selected = 0;
 		$keyword_selection_point = $id*3;
 		$keyword_string = '';
-		while($keywords_selected < 10){
+		while($keywords_selected <= 10){
 			$keyword_selection_point++;
-			if(isset($keywords[$keyword_selection_point])){
+			if(!isset($keywords[$keyword_selection_point])){
 				$keyword_selection_point = $keyword_selection_point-$keyword_count;
 			}
 			if(isset($keywords[$keyword_selection_point])){
@@ -91,6 +99,8 @@ function auto_seo_addin(){
 		echo '<!-- Auto SEO --><meta name="description" content="'.$description.'">';
 		echo "\n";
 		echo '<!-- Auto SEO --><meta name="keywords" content="'.$keywords.'">';
+		echo "\n";
+		echo '<!-- Auto SEO --><meta name="robots" content="index,follow,noodp,noydir" />';
 		echo "\n";
 	}
 }
