@@ -33,7 +33,11 @@ Add_filter('get_header','auto_seo_obstrart');
 #Add_filter('get_header','auto_seo_obstrart');
 function auto_seo_obflush($title,$sep=''){
 	$head = ob_get_clean();
-	echo preg_replace('~(?<!(<!-- Auto SEO -->))<title.*>.+</title>~i','',$head);
+	$head = preg_replace('~(?<!(<!-- Auto SEO -->))<title.*>.+</title>~i','',$head);
+	$head = preg_replace('~(?<!(<!-- Auto SEO -->))<meta name="description".* />~i','',$head);
+	$head = preg_replace('~(?<!(<!-- Auto SEO -->))<meta name="keywords".*/>~i','',$head);
+	$head = preg_replace('~(?<!(<!-- Auto SEO -->))<meta name="robots".*/>~i','',$head);
+	echo $head;
 }
 Add_filter('loop_start','auto_seo_obflush');
 
@@ -78,9 +82,9 @@ function auto_seo_addin(){
 		$keywords_selected = 0;
 		$keyword_selection_point = $id*3;
 		$keyword_string = '';
-		while($keywords_selected < 10){
+		while($keywords_selected <= 10){
 			$keyword_selection_point++;
-			if(isset($keywords[$keyword_selection_point])){
+			if(!isset($keywords[$keyword_selection_point])){
 				$keyword_selection_point = $keyword_selection_point-$keyword_count;
 			}
 			if(isset($keywords[$keyword_selection_point])){
@@ -95,6 +99,8 @@ function auto_seo_addin(){
 		echo '<!-- Auto SEO --><meta name="description" content="'.$description.'">';
 		echo "\n";
 		echo '<!-- Auto SEO --><meta name="keywords" content="'.$keywords.'">';
+		echo "\n";
+		echo '<!-- Auto SEO --><meta name="robots" content="index,follow,noodp,noydir" />';
 		echo "\n";
 	}
 }
