@@ -3,7 +3,7 @@
 Plugin Name: Auto SEO
 Plugin URI: http://www.pgiauto.com/
 Description: Speeds on site SEO time with a single, simple interface to control all the posts/pages.
-Version: 1.3.5
+Version: 1.3.6
 Author: Phillip Gooch
 Author URI: mailto:phillip@pgiauto.com
 License: GNU General Public License v2
@@ -61,6 +61,9 @@ function auto_seo_addin(){
 		$second_title_slugs = explode("\n", $settings['second_title_slug']);
 		$second_title_slug_count = count($second_title_slugs)-1;
 		$cities = explode("\n", $settings['cities']);
+		foreach($cities as $k => $v){
+			$cities[$k]=trim($v);
+		}
 		$city_count = count($cities)-1;
 		$selected_first_title_slug = $id;
 		$selected_second_title_slug = $id;
@@ -83,16 +86,16 @@ function auto_seo_addin(){
 		$keyword_selection_point = $id*3;
 		$keyword_string = '';
 		while($keywords_selected <= 10){
-			$keyword_selection_point++;
-			if(!isset($keywords[$keyword_selection_point])){
-				$keyword_selection_point = $keyword_selection_point-$keyword_count;
+			if($keyword_selection_point>$keyword_count){
+				$keyword_selection_point = $keyword_selection_point%$keyword_count;
 			}
 			if(isset($keywords[$keyword_selection_point])){
-				$keyword_string .= trim($keywords[$keyword_selection_point]).', ';
+				$keyword_string .= trim($keywords[$keyword_selection_point-1]).', ';
 			}
+			$keyword_selection_point++;
 			$keywords_selected++;
 		}
-		$keywords = $keyword_string.$cities[$selected_city];
+		$keywords = get_bloginfo('name').', '.$keyword_string.$cities[$selected_city];
 		#### output the new meta infos
 		echo '<!-- Auto SEO --><title>'.$title.'</title>';
 		echo "\n";

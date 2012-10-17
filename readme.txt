@@ -3,7 +3,7 @@ Contributors: Phillip.Gooch
 Tags: pages, seo, meta-tags, admin
 Requires at least: 3.2
 Tested up to: 3.4
-Stable tag: 1.3.5
+Stable tag: 1.3.6
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,6 +45,10 @@ Yes, the homepage (as defined in the Settings > Reading section) will _always_ u
 
 == Changelog ==
 
+#### 1.3.6
+ + Fixed a bug that would cause keywords to fail if the page/post had a very large (50,000+) id.
+ + Cleaned up the location output so it couldn't add extraneous line breaks in meta tags.
+ + Added site title back to the front of the keywords list.
 #### 1.3.5
  + Added an appropriate robots meta tag into plugin (currently same as default wordpress).
  + Fixed a bug in which it would only pull 2 keywords.
