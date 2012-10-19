@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Auto SEO
-Plugin URI: http://www.pgiauto.com/
+Plugin URI: http://fatfolderdesign.com/
 Description: Speeds on site SEO time with a single, simple interface to control all the posts/pages.
-Version: 1.3.6
+Version: 1.3.7
 Author: Phillip Gooch
-Author URI: mailto:phillip@pgiauto.com
+Author URI: mailto:phillip.gooch@gmail.com
 License: GNU General Public License v2
 */
 
