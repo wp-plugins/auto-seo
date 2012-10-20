@@ -3,7 +3,7 @@ Contributors: Phillip.Gooch
 Tags: pages, seo, meta-tags, admin
 Requires at least: 3.2
 Tested up to: 3.4
-Stable tag: 1.3.7
+Stable tag: 1.3.8
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,7 +46,8 @@ Yes, the homepage (as defined in the Settings > Reading section) will _always_ u
 1. The super fast settings page.
 
 == Changelog ==
-
+#### 1.3.8
+ + Fixed a bug that could under some strange circumstances cause a notice level error to appear on installations with debug turned on.
 #### 1.3.7
  + Filled in some additional information in the read me, just to try and avoid any confusion.
  + Changed author information.
