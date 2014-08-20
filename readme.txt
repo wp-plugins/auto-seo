@@ -42,7 +42,7 @@ Probably, let me know and I'll see if I can work it in there.
 == Changelog ==
 
 #### 2.1.1
- + Added a button to check if AutoSEO is working.
+ + Added a simple check if AutoSEO is working.
  + Fixed some really terrible typos in the readme and settings page.
 #### 2.0.0
  + Completly rewritten from the ground up, bigger, better, faster, stronger.
