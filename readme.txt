@@ -1,51 +1,53 @@
 === Auto SEO ===
 Contributors: Phillip.Gooch
 Tags: pages, seo, meta-tags, admin
-Requires at least: 3.2
-Tested up to: 3.4
-Stable tag: 1.3.8
+Requires at least: 3.4
+Tested up to: 3.9.1
+Stable tag: 2.1.1
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-AutoSEO is the fastest, simplest way to add page titles, meta tags, and meta descriptions to an entire site at once.
+Auto SEO is a quick, simple way to add title, meta keywords, and meta descriptions to your site all at one from a single page.
 
 == Description ==
 
-AutoSEO is a simple way to add page titles, meta tags, and meta descriptions to an entire site at once. Instead of manually
-going to each page and tagging them seperatly, AutoSEO provides you with one page to fill out that will genreate meta tags
-on each of your pages based on your input.
+Auto SEO is a simple way to add all your SEO header tags from a single interface. It will generate new meta tags, replacing any old ones your theme may add already, that are fully customized to target the audience you want. Don't want to override everything? No problem, you choose what to override and on what post types to do it. Take the tedium out of SEO.
 
-Why AutoSEO
-
- + One page to do it all, much faster than manually submitting filling meta data on a page by page basis.
- + Designed for geolocated searches, get titles and descriptions for a specific city or multiple cities, or - or replace the city list with anything else for more general tagging.
- + Customizability, you pick the locations, keywords, and title slugs, as well as the divider and it does the rest.
- + Works with nearly all themes, even older themes and themes missing headers.
- + Did I mention how much quicker it is? Super-quick!
-
-_Note: AutoSEO works by replacing content in the html head section and is, in all practicality, not compatible with other SEO header tag plugins._
+_Note: because Auto SEO is designed to override existing meta tags when needed it works a bit differently than other SEO plugins and as such may not work on every theme. While it has been tested with a wide variety of different themes naturally it would be impossible to test them all. If your having trouble getting it to active on your site I'm more than willing to help, just let me know what theme your using and I'll take a look, contact information inside the plugin.
 
 == Installation ==
 
 1. Upload the `auto-seo` directory to your `/wp-content/plugins/` directory.
+2. Active the plugin.
+3. Go to the new “Auto SEO” settings page and review/adjust the settings and keywords as desired.
 
-After installation all you have to do is go to the new "Auto SEO' Admin menu item and fill out the simple form, once it's saved your good to go.
+The settings page has notes on their functions and should be self explanatory, but here are the highlights.
+
+- **Active Post Types** determines where Auto SEO inserts/replaces meta data.
+
+- **Keyword Sets** lets you define sets of keywords to be automagically inserted into the description where you want them, also shows the pool from which meta keywords and chosen.
+
+- **Meta Tag Options** let you control what tags are enabled, and set up new title tags, meta descriptions, and the number of keywords as well as override the robots if desired.
 
 == Frequently Asked Questions ==
 
-= Why aren't my tags showing up? =
+= I got this great idea, can you implement it? = 
 
-You'll need at least 2 entries in each section.
-
-= Is there a way to have the homepage use a specific location and set of slugs? =
-
-Yes, the homepage (as defined in the Settings > Reading section) will _always_ use the first item from each section.
+Probably, let me know and I'll see if I can work it in there.
 
 == Screenshots ==
 
-1. The super fast settings page.
+1. Auto SEO settings page.
 
 == Changelog ==
+
+#### 2.1.1
+ + Added a button to check if AutoSEO is working.
+ + Fixed some really terrible typos in the readme and settings page.
+#### 2.0.0
+ + Completly rewritten from the ground up, bigger, better, faster, stronger.
+ + Now supports completly custom keyword sets.
+ + Added the ability to changed what is inserted/overitten and where.
 #### 1.3.8
  + Fixed a bug that could under some strange circumstances cause a notice level error to appear on installations with debug turned on.
 #### 1.3.7
