@@ -2,7 +2,7 @@
 Contributors: Phillip.Gooch
 Tags: pages, seo, meta-tags, admin
 Requires at least: 3.4
-Tested up to: 3.9.1
+Tested up to: 4.0
 Stable tag: 2.1.1
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -42,7 +42,7 @@ Probably, let me know and I'll see if I can work it in there.
 == Changelog ==
 
 #### 2.1.1
- + Added a simple check if AutoSEO is working.
+ + Added a button to check if AutoSEO is working.
  + Fixed some really terrible typos in the readme and settings page.
 #### 2.0.0
  + Completly rewritten from the ground up, bigger, better, faster, stronger.
