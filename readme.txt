@@ -2,8 +2,8 @@
 Contributors: Phillip.Gooch
 Tags: pages, seo, meta-tags, admin
 Requires at least: 3.4
-Tested up to: 4.0.0
-Stable tag: 2.1.2
+Tested up to: 4.1
+Stable tag: 2.1.3
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,6 +41,8 @@ Probably, let me know and I'll see if I can work it in there.
 
 == Changelog ==
 
+#### 2.1.3
+ + Confirmed plugin compatibility with WordPress 4.1
 #### 2.1.2
  + Fixed a bug that would prevent scripts from loading in my "critique" plugin.
  + Fixed a typo that would cause double backslashes from appearing in the script and style links (although the script and style fiels still loaded properly).
